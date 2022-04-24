@@ -1,111 +1,133 @@
+const { Schema, model } = require('mongoose');
 
-Thought
+const ThoughtSchema = new Schema({
+    writtenBy: {
+        type: String
+    },
 
-thoughtText
+    thoughtBody: {
+        type: String
+    },
 
-String
-Required
-Must be between 1 and 280 characters
-createdAt
+     createdAt: {
+        type: Date,
+        default: Date.now
+    }
+});
 
-Date
-Set default value to the current timestamp
-Use a getter method to format the timestamp on query
-username (The user that created this thought)
+const Thought = model('Thought', ThoughtSchema);
 
-String
-Required
-reactions (These are like replies)
+module.exports = Thought;
 
-Array of nested documents created with the reactionSchema
-Schema Settings
 
-Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
+////////////////////////////////////////////////////////
+// Thought
 
-Reaction (SCHEMA ONLY)
+// thoughtText
 
-reactionId
+// String
+// Required
+// Must be between 1 and 280 characters
+// createdAt
 
-Use Mongoose's ObjectId data type
-Default value is set to a new ObjectId
-reactionBody
+// Date
+// Set default value to the current timestamp
+// Use a getter method to format the timestamp on query
+// username (The user that created this thought)
 
-String
-Required
-280 character maximum
-username
+// String
+// Required
+// reactions (These are like replies)
 
-String
-Required
-createdAt
+// Array of nested documents created with the reactionSchema
+// Schema Settings
 
-Date
-Set default value to the current timestamp
-Use a getter method to format the timestamp on query
-Schema Settings
+// Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
 
-This will not be a model, but rather will be used as the reaction field's subdocument schema in the Thought model.
+// Reaction (SCHEMA ONLY)
 
-API Routes
-/api/users
+// reactionId
 
-GET all users
+// Use Mongoose's ObjectId data type
+// Default value is set to a new ObjectId
+// reactionBody
 
-GET a single user by its _id and populated thought and friend data
+// String
+// Required
+// 280 character maximum
+// username
 
-POST a new user:
+// String
+// Required
+// createdAt
 
-/api/thoughts
+// Date
+// Set default value to the current timestamp
+// Use a getter method to format the timestamp on query
+// Schema Settings
 
-GET to get all thoughts
+// This will not be a model, but rather will be used as the reaction field's subdocument schema in the Thought model.
 
-GET to get a single thought by its _id
+// API Routes
+// /api/users
 
-POST to create a new thought (don't forget to push the created thought's _id to the associated user's thoughts array field)
+// GET all users
+
+// GET a single user by its _id and populated thought and friend data
+
+// POST a new user:
+
+// /api/thoughts
+
+// GET to get all thoughts
+
+// GET to get a single thought by its _id
+
+// POST to create a new thought (don't forget to push the created thought's _id to the associated user's thoughts array field)
 
 // example data
-{
-  "thoughtText": "Here's a cool thought...",
-  "username": "lernantino",
-  "userId": "5edff358a0fcb779aa7b118b"
-}
+// {
+//   "thoughtText": "Here's a cool thought...",
+//   "username": "lernantino",
+//   "userId": "5edff358a0fcb779aa7b118b"
+// }
 
-PUT to update a thought by its _id
+// PUT to update a thought by its _id
 
-DELETE to remove a thought by its _id
+// DELETE to remove a thought by its _id
 
-/api/thoughts/:thoughtId/reactions
+// /api/thoughts/:thoughtId/reactions
 
-POST to create a reaction stored in a single thought's reactions array field
+// POST to create a reaction stored in a single thought's reactions array field
 
-DELETE to pull and remove a reaction by the reaction's reactionId value
+// DELETE to pull and remove a reaction by the reaction's reactionId value
 
 //////////////////////////////////////////////////////////////
 
 
 
 
-Reaction (SCHEMA ONLY)
+// Reaction (SCHEMA ONLY)
 
-reactionId
+// reactionId
 
-Use Mongoose's ObjectId data type
-Default value is set to a new ObjectId
-reactionBody
+// Use Mongoose's ObjectId data type
+// Default value is set to a new ObjectId
+// reactionBody
 
-String
-Required
-280 character maximum
-username
+// String
+// Required
+// 280 character maximum
+// username
 
-String
-Required
-createdAt
+// String
+// Required
+// createdAt
 
-Date
-Set default value to the current timestamp
-Use a getter method to format the timestamp on query
-Schema Settings
+// Date
+// Set default value to the current timestamp
+// Use a getter method to format the timestamp on query
+// Schema Settings
 
-This will not be a model, but rather will be used as the reaction field's subdocument schema in the Thought model.
+// This will not be a model, but rather will be used as the reaction field's subdocument schema in the Thought model.
 // example data
