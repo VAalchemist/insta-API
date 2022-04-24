@@ -1,0 +1,24 @@
+{
+  "name": "insta-api",
+  "version": "1.0.0",
+  "description": "API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list, using express.js for routing, mongoDB for database and mongoose for ODM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VAalchemist/insta-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VAalchemist/insta-API/issues"
+  },
+  "homepage": "https://github.com/VAalchemist/insta-API#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.3.1"
+  }
+}
