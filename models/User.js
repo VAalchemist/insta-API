@@ -1,50 +1,49 @@
-// example data
-// {
-//     "username": "lernantino",
-//     "email": "lernantino@gmail.com"
-//   }
-//   PUT to update a user by its _id
+const { Schema, model } = require('mongoose');
 
-//   DELETE to remove user by its _id
-  
-//   BONUS: Remove a user's associated thoughts when deleted.
-  
-//   /api/users/:userId/friends/:friendId
-  
-//   POST to add a new friend to a user's friend list
-  
-//   DELETE to remove a friend from a user's friend list
-  
-//////////////////////////////////////////////////////////////  
+const UserSchema = new Schema({
+  username: {
+    type: String,
+    unique: true,
+    required: 'Username is required',
+    trim:true
+  },
 
+  email: {
+    type: String,
+    unique: true,
+    required: 'Email is required',
+    match: [/.+@.+\..+/]
+  },
 
-// username
+  thoughts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Thought'
+    }
+  ],
 
-// String
-// Unique
-// Required
-// Trimmed
-// email
+  friends: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ],
 
-// String
-// Required
-// Unique
-// Must match a valid email address (look into Mongoose's matching validation)
-// thoughts
+  toJSON: {
+    virtuals: true,
+    getters: true
+  },
+    // prevents virtuals from creating duplicate of _id as `id`
+  id: false
+});
 
-// Array of _id values referencing the Thought model
-// friends
+// get total count of thoughts and reactions on retrieval
+UserSchema.virtual('thoughtCount').get(function () {
+  return this.thoughts.reduce((total, thought) => total + thought.replies.length + 1, 0);
+});
 
-// Array of _id values referencing the User model (self-reference)
-// Schema Settings
+//create the User model using UserSchema
+const User = model('User', UserSchema);
 
-// Create a virtual called friendCount that retrieves the length of the user's friends array field on query.
-
-
-
-
-
-
-
-
-
+// then export it
+module.exports = User;
