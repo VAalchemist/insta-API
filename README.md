@@ -10,8 +10,7 @@
 
 # Table of Contents
 * [Description](#description)
-* [Deployed Page](#deployed-page)
-* [Photos](#photos)
+* [Page Repo](#deployed-page)
 * [Installation](#installation)
 * [Video](#video)
 * [Contact](#contact)
@@ -33,21 +32,16 @@
 >> launchingg app and stuff here
 
 # Video
-WALKTHROUGH HERE
-
-# Photos
-![]()
-
-![]()
+https://drive.google.com/file/d/1xp99j-AC4cZSFmaq5uLDM7v5kgYOifIb/view
 
 
-# Deployed Page
-<a href="https://young-thicket-71102.herokuapp.com/index">insta-API</a> 
+# Page Repo
+<a href="https://github.com/VAalchemist/insta-API">insta-API</a> 
 
  
 # Contact
 <a href="https://github.com/VAalchemist">Github: VAalchemist</a><br>
-<a href="">LinkedIn: </a><br>
+<a href="https://www.linkedin.com/in/charlene-kim-1a9a72226/">LinkedIn! </a><br>
 
 
 
