@@ -1,19 +1,18 @@
 const express = require("express");
+const db = require('./config/connection');
+const routes = require('./routes');
 
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(routes);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(require("./routes"));
 
-
-
-// log mongo queries that are executed
-mongoose.set('debug', true);
-
-app.use(require('./routes'));
-
-app.listen(PORT, () => console.log(`👾 Connected to localhost:${PORT}`));
+db.once('open', () => {
+  app.listen(PORT, () => {
+    console.log(`👾 Connected to port ${PORT}!`);
+  });
+});
