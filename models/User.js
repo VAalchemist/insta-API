@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const UserSchema = new Schema({
+const userSchema = new Schema({
   username: {
     type: String,
     unique: true,
@@ -12,7 +12,7 @@ const UserSchema = new Schema({
     type: String,
     unique: true,
     required: true,
-    match: [/.+\@.+\.+/, "Please fill a valid email address"]
+    match: [/.+@.+\..+/, 'MPlease fill a valid email address'],
   },
 
   thoughts: [
@@ -40,11 +40,11 @@ const UserSchema = new Schema({
 });
 
 //get total count of friends on retrieval
-UserSchema.virtual("friendCount").get(function () {
+userSchema.virtual("friendCount").get(function () {
     return this.friends.length;
   });
 
 //create the User model using UserSchema
-const User = model('User', UserSchema);
+const User = model('User', userSchema);
 // then export it
 module.exports = User;

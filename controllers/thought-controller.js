@@ -38,7 +38,7 @@ const thoughtController = {
             { $push: { thoughts: dbThoughtData._id } },
             { new: true }
         );
-        )
+        })
         .then((dbUserData) => {
         if (!dbUserData) {
             return res.status(404).json({ message: 'Thought created but no user with this id!' });
@@ -131,47 +131,5 @@ const thoughtController = {
         res.status(500).json(err);
         });
     }
-
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 };
