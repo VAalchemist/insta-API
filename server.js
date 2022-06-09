@@ -1,26 +1,18 @@
 const express = require("express");
-const mongoose = require("mongoose");
+const db = require('./config/connection');
+const routes = require('./routes');
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(routes);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.static("public"));
 
-app.use(require("./routes"));
 
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/insta-api",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
-
-// log mongo queries that are executed
-mongoose.set('debug', true);
-
-app.use(require('./routes'));
-
-app.listen(PORT, () => console.log(`👾 Connected to localhost:${PORT}`));
+db.once('open', () => {
+  app.listen(PORT, () => {
+    console.log(`👾 Connected to port ${PORT}!`);
+  });
+});
